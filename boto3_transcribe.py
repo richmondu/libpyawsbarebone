@@ -1,5 +1,5 @@
 ###############################################################################
-# Communicate with Amazon Polly using Amazon's SDK library
+# Communicate with Amazon Transcribe using Amazon's SDK library
 ###############################################################################
 import boto3
 from amazon_credentials import amazon_credentials
