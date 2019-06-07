@@ -9,8 +9,10 @@ without using Amazon SDKs, such as the Python Boto3 library.
 
 Instructions:
 
-    1. Create amazon_credentials.py
+    1. Copy your Amazon security credentials (access key id and secret access key)
+       https://console.aws.amazon.com/iam/home?#/security_credentials
+    2. Create amazon_credentials.py
        class amazon_credentials:
            ACCESS_KEY = 'EXAMPLEACCESSKEY'
            SECRET_KEY = 'EXAMPLESECRETKEY'
-    2. Update and run barebones_xxx.bat
+    3. Update and run barebones_xxx.bat
