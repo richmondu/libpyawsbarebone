@@ -25,9 +25,6 @@ CONFIG_HTTP_METHOD        = 'POST'
 CONFIG_HTTP_API           = '/'
 CONFIG_HTTP_CONTENT_TYPE  = 'application/x-www-form-urlencoded'
 
-CONFIG_AWS_POLLY_VOICE_ID = "Joanna"
-CONFIG_AWS_POLLY_FORMAT   = "pcm"
-
 CONFIG_AWS_HEADERS        = 'content-type;host;x-amz-date'
 CONFIG_AWS_ALGORITHM      = 'AWS4-HMAC-SHA256'
 CONFIG_AWS_SIG4_REQUEST   = 'aws4_request'
@@ -190,7 +187,8 @@ class sns_barebones:
 
 def main(args):
 
-    message_to_send = "Hello World"
+    #message_to_send = "Hello World!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+    message_to_send = "Hello World!"
     response_output = "output/sns_barebones.txt"
     phone_number = "+639175900612"
 
