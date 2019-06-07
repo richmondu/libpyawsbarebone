@@ -140,19 +140,22 @@ class sns_barebones:
         self.session.sendall(request.encode("utf-8"))
         print("{} [{}]".format(request, len(request)))
 
-    def generateRequestSNS(self, message_to_send, phone_number):
-        request = {'Action':'Publish', 'Version':'2010-03-31', 'PhoneNumber':phone_number, 'Message':message_to_send}
+    def generateRequestSNS(self, message_to_send, is_text, phone_number, topic_arn):
+        if is_text:
+            request = {'Action':'Publish', 'Version':'2010-03-31', 'PhoneNumber':phone_number, 'Message':message_to_send}
+        else:
+            request = {'Action':'Publish', 'Version':'2010-03-31', 'TopicArn':topic_arn, 'Message':message_to_send}
         request = urllib.parse.urlencode(request)
         return request
 
-    def createRequestSNS(self, message_to_send, phone_number):
+    def createRequestSNS(self, message_to_send, is_text, phone_number, topic_arn):
 
         (amz_date, date_stamp) = self.getDateTimeStamps()
 
         credential_scope = date_stamp + '/' + CONFIG_AWS_REGION + '/' + CONFIG_AWS_SERVICE + '/' + CONFIG_AWS_SIG4_REQUEST
         print("credential_scope:\r\n{}\r\n".format(credential_scope))
 
-        request_parameters = self.generateRequestSNS(message_to_send, phone_number)
+        request_parameters = self.generateRequestSNS(message_to_send, is_text, phone_number, topic_arn)
         print("request_parameters:\r\n{}\r\n".format(request_parameters))
 
         canonical_request = self.generateCanonicalRequest(amz_date, request_parameters)
@@ -190,10 +193,14 @@ def main(args):
     #message_to_send = "Hello World!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
     message_to_send = "Hello World!"
     response_output = "output/sns_barebones.txt"
+
+    # if True, send text, otherwise send based on the topic configuration [email, https, sqs, lambda, etc]
+    is_text = True 
     phone_number = "+639175900612"
+    topic_arn = "arn:aws:sns:ap-southeast-1:773510983687:FT900SNStopic"
 
     sns = sns_barebones()
-    request_input = sns.createRequestSNS(message_to_send, phone_number)
+    request_input = sns.createRequestSNS(message_to_send, is_text, phone_number, topic_arn)
     sns.connect()
     sns.sendRequest(request_input)
     sns.recvResponseSNS(response_output)

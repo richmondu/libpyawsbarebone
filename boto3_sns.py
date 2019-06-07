@@ -15,6 +15,7 @@ g_aws_secret_access_key = amazon_credentials.SECRET_KEY
 ###############################################################################
 
 ###############################################################################
+g_send_text_or_email = False
 g_region_name = 'ap-southeast-1'
 ###############################################################################
 
@@ -28,8 +29,13 @@ def main(args):
         aws_secret_access_key=g_aws_secret_access_key,
         region_name=g_region_name).client('sns')
 
-    # Send a SMS message to the specified phone number
-    response = sns.publish(PhoneNumber='+639175900612', Message='Hello World!')
+    if g_send_text_or_email:
+        # Send a SMS message to the specified phone number
+        response = sns.publish(Message='Hello World!', PhoneNumber='+639175900612')
+    else:
+        # Send a email message to the registered email subscribers in the cloud
+        response = sns.publish(Message='Hello World!', TopicArn='arn:aws:sns:ap-southeast-1:773510983687:FT900SNStopic')
+
     print(response)
 
 
