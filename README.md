@@ -7,6 +7,13 @@ It uses plain sockets and encryption to send HTTP POST packet signed with SigV4 
 It is useful for people who want to know how to implement Amazon connectivity from scratch
 without using Amazon SDKs, such as the Python Boto3 library.
 
+Supported Services:
+
+    1. Amazon Polly
+    2. Amazon SNS
+    3. Amazon Lambda
+    4. Amazon IoT Core
+
 Instructions:
 
     1. Copy your Amazon security credentials (access key id and secret access key)
