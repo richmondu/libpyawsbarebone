@@ -7,12 +7,12 @@ It uses plain sockets and encryption to send HTTP POST packet signed with SigV4 
 It is useful for people who want to know how to implement Amazon connectivity from scratch
 without using Amazon SDKs, such as the Python Boto3 library.
 
-Supported Services:
+Supported Amazon Services:
 
-    1. Amazon Polly [converting text to speech]
-    2. Amazon SNS [sending sms/text and email]
-    3. Amazon Lambda [invoking serverless function]
-    4. Amazon IoT Core [publishing sensor data]
+    1. AWS Polly [converting text to speech]
+    2. AWS SNS [sending sms/text and email]
+    3. AWS Lambda [invoking serverless function]
+    4. AWS IoT Core [publishing sensor data]
 
 Instructions:
 
