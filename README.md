@@ -9,10 +9,10 @@ without using Amazon SDKs, such as the Python Boto3 library.
 
 Supported Services:
 
-    1. Amazon Polly
-    2. Amazon SNS
-    3. Amazon Lambda
-    4. Amazon IoT Core
+    1. Amazon Polly [converting text to speech]
+    2. Amazon SNS [sending sms/text and email]
+    3. Amazon Lambda [invoking serverless function]
+    4. Amazon IoT Core [publishing sensor data]
 
 Instructions:
 
