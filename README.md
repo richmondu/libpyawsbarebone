@@ -12,7 +12,8 @@ Supported Amazon Services:
     1. AWS Polly [converting text to speech]
     2. AWS SNS [sending sms/text and email]
     3. AWS Lambda [invoking serverless function]
-    4. AWS IoT Core [publishing sensor data]
+    4. AWS DynamoDB [adding item to a database table]
+    5. AWS IoT Core [publishing sensor data]
 
 Instructions:
 
