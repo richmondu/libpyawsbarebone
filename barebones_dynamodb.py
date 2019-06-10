@@ -217,14 +217,10 @@ def main(args):
                     value = {}
                     value["S"] = str(json_data[elem])
                     formatted_data[elem] = value
-                    #print("{}:S={}".format(elem, json_data[elem]))
                 elif type(json_data[elem]) is int:
                     value = {}
                     value["N"] = str(json_data[elem])
                     formatted_data[elem] = value
-                    #print("{}:N={}".format(elem, json_data[elem]))
-                #elif type(json_data[elem]) is dict:
-                #    print("{}:M={}".format(elem, json_data[elem]))
 
             payload = {}
             payload["TableName"] = CONFIG_AWS_DYNAMODB_TABLENAME
