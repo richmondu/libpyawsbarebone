@@ -31,7 +31,7 @@ def main(args):
         aws_secret_access_key=g_aws_secret_access_key,
         region_name=g_region_name).client('iot-data')
 
-    devices = {"knuth", "turing", "hopper"}
+    devices = {"hopper", "knuth", "turing"}
     while True:
         for device in devices:
             json_data = {}
@@ -55,8 +55,6 @@ def main(args):
 def parse_arguments(argv):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--text_to_synthesize', required=False, 
-        default="Hello World, how are you today?", help='Text to synthesize')
     return parser.parse_args(argv)
 
 
