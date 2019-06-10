@@ -15,7 +15,7 @@ g_aws_secret_access_key = amazon_credentials.SECRET_KEY
 ###############################################################################
 
 ###############################################################################
-g_region_name = 'us-east-1'
+g_region_name = 'ap-southeast-1'
 g_bucket_name = 'iotgs-iotgss3bucket-2uxeg22cmka4'
 g_file_name = 'file.txt'
 ###############################################################################
