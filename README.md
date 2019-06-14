@@ -14,7 +14,7 @@ Supported Amazon Services:
     3. AWS Lambda [invoking serverless function]
     4. AWS DynamoDB [adding item to a database table]
     5. AWS S3 [retrieving file from clodu storage]
-    5. AWS IoT Core [publishing sensor data]
+    6. AWS IoT Core [publishing sensor data]
 
 Instructions:
 
