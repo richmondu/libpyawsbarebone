@@ -4,7 +4,7 @@
 libpyawsbarebone is a bare bone Python implementation of Amazon services connectivity.
 It uses plain sockets and encryption to send HTTP POST packet signed with SigV4 and sent over secure TLS tunnel.
 
-It is useful for people who want to know how to implement Amazon connectivity from scratch
+It is useful for people who want to know how to implement Amazon connectivity from scratch (ex. for resource-constrained MCU using C)
 without using Amazon SDKs, such as the Python Boto3 library.
 
 Supported Amazon Services:
