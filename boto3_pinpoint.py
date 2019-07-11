@@ -83,6 +83,7 @@ def main(args):
     subject = "Testing Amazon Pinpoint"
     message = "Hello World!"
 
+
     # sms
     recipient = "+639175900612"
     response = send_message(pinpoint, recipient, message, subject=None)
@@ -90,6 +91,7 @@ def main(args):
         response["ResponseMetadata"]["HTTPStatusCode"]==200, 
         response["MessageResponse"]["Result"][recipient]["StatusCode"]==200))
 
+    # email
     recipient = "richmond.umagat@yahoo.com"
     response = send_message(pinpoint, recipient, message, subject=subject)
     print("Sending EMAIL done. {} {}".format(
