@@ -102,8 +102,6 @@ def main(args):
 def parse_arguments(argv):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--text_to_synthesize', required=False, 
-        default="Hello World, how are you today?", help='Text to synthesize')
     return parser.parse_args(argv)
 
 
