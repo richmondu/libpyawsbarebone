@@ -15,7 +15,7 @@ g_aws_secret_access_key = amazon_credentials.SECRET_KEY
 ###############################################################################
 
 ###############################################################################
-g_pinpoint_project_id = ""
+g_pinpoint_project_id = "" # UPDATE ME
 g_region_name         = "us-east-1"
 g_email_from          = "richmond.umagat@gmail.com"
 g_sender_id           = "AmazonAWS"
