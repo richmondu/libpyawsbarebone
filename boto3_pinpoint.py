@@ -5,6 +5,7 @@ import boto3
 from amazon_credentials import amazon_credentials
 import argparse
 import sys
+import json
 
 
 
@@ -26,7 +27,7 @@ g_send_text_or_email  = True
 ###############################################################################
 # https://docs.aws.amazon.com/code-samples/latest/catalog/python-pinpoint-pinpoint_send_email_message_api.py.html
 ###############################################################################
-def send_email(pinpoint, email_recipient, email_subject, email_message):
+def send_email(pinpoint, email_recipient, email_message, email_subject):
     response = pinpoint.send_messages(
         ApplicationId=g_pinpoint_project_id,
         MessageRequest={
@@ -36,7 +37,7 @@ def send_email(pinpoint, email_recipient, email_subject, email_message):
                     'FromAddress': g_email_from,
                     'SimpleEmail':  {
                         'Subject':  {'Charset': 'UTF-8', 'Data': email_subject},
-                        'HtmlPart': {'Charset': 'UTF-8', 'Data': email_message}
+                        'TextPart': {'Charset': 'UTF-8', 'Data': email_message}
                     }
                 }
             }
@@ -61,6 +62,15 @@ def send_sms(pinpoint, sms_recipient, sms_message):
     )
     return response
 
+
+def send_message(pinpoint, recipient, message, subject=None):
+    if subject is None:
+        response = send_sms(pinpoint, recipient, message)
+    else:
+        response = send_email(pinpoint, recipient, message, subject)
+    return response
+
+
 def main(args):
 
     #boto3.set_stream_logger(name='botocore')
@@ -70,33 +80,23 @@ def main(args):
         aws_secret_access_key=g_aws_secret_access_key,
         region_name=g_region_name).client('pinpoint')
 
-    ###############################################################################
-    # sms
-    ###############################################################################
-    if g_send_text_or_email:
-        sms_recipient = "+639175900612"
-        sms_message = "Hello World!"
-        response = send_sms(pinpoint, sms_recipient, sms_message)
-    ###############################################################################
-    # email
-    ###############################################################################
-    else:
-        email_recipient = "richmond.umagat@yahoo.com"
-        email_subject   = "Pinpoint message from Richmond"
-        email_message = """<html>
-        <head></head>
-        <body>
-          <h1>Amazon Pinpoint Test (SDK for Python)</h1>
-          <p>This email was sent with
-            <a href='https:#aws.amazon.com/pinpoint/'>Amazon Pinpoint</a> using the
-            <a href='https:#aws.amazon.com/sdk-for-python/'>
-              AWS SDK for Python (Boto 3)</a>.</p>
-        </body>
-        </html>
-                    """
-        response = send_email(pinpoint, email_recipient, email_subject, email_message)
+    subject = "Testing Amazon Pinpoint"
+    message = "Hello World!"
 
-    print(response)
+    # sms
+    recipient = "+639175900612"
+    response = send_message(pinpoint, recipient, message, subject=None)
+    print("Sending SMS done. {} {}".format(
+        response["ResponseMetadata"]["HTTPStatusCode"]==200, 
+        response["MessageResponse"]["Result"][recipient]["StatusCode"]==200))
+
+    recipient = "richmond.umagat@yahoo.com"
+    response = send_message(pinpoint, recipient, message, subject=subject)
+    print("Sending EMAIL done. {} {}".format(
+        response["ResponseMetadata"]["HTTPStatusCode"]==200, 
+        response["MessageResponse"]["Result"][recipient]["StatusCode"]==200))
+
+    return
 
 
 def parse_arguments(argv):
