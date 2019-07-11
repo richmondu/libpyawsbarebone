@@ -73,6 +73,8 @@ def send_message(pinpoint, recipient, message, subject=None):
 
 def main(args):
 
+    #boto3.set_stream_logger(name='botocore')
+
     pinpoint = boto3.Session(
         aws_access_key_id=g_aws_access_key_id,
         aws_secret_access_key=g_aws_secret_access_key,
